@@ -1,13 +1,14 @@
 #include <stdio.h>
 #define MAXSIZE 4096
 
-/**
- * You can use this recommended helper function 
- * Returns true if partial_line matches pattern, starting from
- * the first char of partial_line.
- */
-int matches_leading(char *partial_line, char *pattern) {
-  // Implement if desire 
+int matches_leading(char *partial_line, char *pattern){
+	int i = 0;
+	while(pattern[i] != '\0'){//While array at i doesnt equal end value
+		if(partial_line[i] == '\0' || partial_line == '\n'){//end of line reached
+			return 0;
+		}if(pattern[i] == '\'){
+		    if(partial_line[i] != pattern[i+1]){
+			    return 0;
 
   return 0;
 }
@@ -18,7 +19,7 @@ int matches_leading(char *partial_line, char *pattern) {
  *
  * Implementation of the rgrep matcher function
  */
-int rgrep_matches(char *line, char *pattern) {
+int rgrep_matches(char *line, char *pattern){
 	int length = 0;
 	int count = 0;
 	char* partial_line = (char*)malloc(MAXSIZE*sizeof(char));
