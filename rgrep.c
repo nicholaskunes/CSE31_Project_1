@@ -7,11 +7,45 @@ int matches_leading(char *partial_line, char *pattern){
 		if(partial_line[i] == '\0' || partial_line == '\n'){//end of line reached
 			return 0;
 		}if(pattern[i] == '\'){
-		    if(partial_line[i] != pattern[i+1]){
-			    return 0;
-
-  return 0;
-}
+		    	if(partial_line[i] != pattern[i+1]){
+			    	return 0;
+			}if(pattern[i+2] == '+'){
+				char prev_char = pattern[i+1];
+				int incremented = 0;
+				while(partial_line[i+1] == prev_char){
+					partial_line++;
+					incremented = 1;
+				}if(pattern[i+3] == prev_char && incremented){
+					partial_line--;
+				}pattern = pattern +3;
+			} else {
+				pattern++;
+				i++;
+		}} else if(pattern[i+1] == '+') {
+			char prev_char = pattern[i];
+			if(prev_char == '.') {
+				while(partial_line[i] != '\0' && partial_line[i] != pattern[i+2]) {
+					partial_line++;
+				}pattern = pattern+2;
+			} else {
+				int incremented = 0;
+				while(partial_line[i] == prev_char) {
+					partial_line++;
+					increment = 1;
+				}if pattern[i+2] == prev_char && incremented){
+					partial_line--;
+				}pattern = pattern + 2;
+				if(!incremented){
+					return 0;
+		}}}else if(pattern[i] == '.'){
+			i++;
+		}else if(pattern[i] == '?'){
+			pattern++;
+		} else {
+			i++;
+		}
+		    }
+  return 1;
 
 /**
  * You may assume that all strings are properly null terminated 
